@@ -72,10 +72,10 @@ for (j in 1:imp$m){
 rf.auc.aki=mean(unlist(auc)) # average AUC from 50 MI datasets
 par(mfrow=c(1,2)) # RF importance plot
 dotchart(sort(rowMeans(MDacc),decreasing = FALSE),
-         labels=(names(test)[-1])[order(rowMeans(MDacc),decreasing = FALSE)],
+         labels=(names(test)[-c(1,exclude.idx)])[order(rowMeans(MDacc),decreasing = FALSE)],
          pch=1, main="Mean Decrease Accuracy, AKI")
 dotchart(sort(rowMeans(MDgini),decreasing = FALSE),
-         labels=(names(test)[-1])[order(rowMeans(MDgini),decreasing = FALSE)],
+         labels=(names(test)[-c(1,exclude.idx)])[order(rowMeans(MDgini),decreasing = FALSE)],
          pch=1, main="Mean Decrease Gini, AKI")
 MDacc.aki=MDacc
 MDgini.aki=MDgini
@@ -143,10 +143,10 @@ for (j in 1:imp$m){
 }
 rf.auc.nonaki=mean(unlist(auc))
 dotchart(sort(rowMeans(MDacc),decreasing = FALSE),
-         labels=(names(test)[-1])[order(rowMeans(MDacc),decreasing = FALSE)],
+         labels=(names(test)[-c(1,exclude.idx)])[order(rowMeans(MDacc),decreasing = FALSE)],
          pch=1, main="Mean Decrease Accuracy, non-AKI")
 dotchart(sort(rowMeans(MDgini),decreasing = FALSE),
-         labels=(names(test)[-1])[order(rowMeans(MDgini),decreasing = FALSE)],
+         labels=(names(test)[-c(1,exclude.idx)])[order(rowMeans(MDgini),decreasing = FALSE)],
          pch=1, main="Mean Decrease Gini, non-AKI")
 lasso.auc.nonaki=mean(auc.lasso)
 temp.rownames=rownames(coef(lasso.fit))[-(1:2)]
